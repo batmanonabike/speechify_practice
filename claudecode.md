@@ -29,3 +29,8 @@ Timings
     Note: You must push your code to the repo within those 50 minutes, as your access will be revoked after the test runs out of time."
 
 This repo is going to be used as practice.
+
+If there is time later, create another practice exercise focused on these role-aligned items:
+- async work with cancellation and responsiveness
+- telemetry or logging hooks
+- localization or formatting requirements
