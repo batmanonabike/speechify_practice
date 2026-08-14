@@ -46,7 +46,7 @@ Hands-on exercises covering 32 C# topics. Each topic has:
 | 17 | `Ex17_Generics.cs` | Generics & type constraints |
 | 18 | `Ex18_Delegates.cs` | Delegates, Func, Action, events |
 | 19 | `Ex19_DesignPatterns.cs` | Strategy, Decorator, Factory patterns |
-| 20 | `Ex20_DI.cs` | Dependency injection |
+| 20 | `Ex20_DI.cs` | Constructor injection & `Microsoft.Extensions.DependencyInjection` |
 | 21 | `Ex21_RecordsVsClasses.cs` | Records vs classes, `with`-expressions |
 | 22 | `Ex22_Nullable.cs` | Nullable reference types & null operators |
 | 23 | `Ex23_PatternMatching.cs` | Pattern matching & switch expressions |

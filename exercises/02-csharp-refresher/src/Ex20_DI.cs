@@ -1,5 +1,10 @@
-// Exercise 20 — Dependency Injection & interfaces
+// Exercise 20 — Constructor Injection & Microsoft.Extensions.DependencyInjection
 // Reference: docs/csharp-refresher/20_DI.cs
+//
+// Part A: implement OrderNotificationService using constructor injection.
+// Part B: wire everything up with a real ServiceCollection / ServiceProvider.
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CSharpExercises;
 
@@ -18,7 +23,7 @@ public interface IEmailService
 }
 
 // ---------------------------------------------------------------
-// Your task: implement the service that uses both dependencies.
+// Part A — your task: implement the service using constructor injection.
 // ---------------------------------------------------------------
 
 /// <summary>
@@ -43,3 +48,63 @@ public class OrderNotificationService
     public Task NotifyAsync(string customerId, string email)
         => throw new NotImplementedException();
 }
+
+// ---------------------------------------------------------------
+// Part B — concrete implementations to register with the container.
+// ---------------------------------------------------------------
+
+/// <summary>
+/// A real (stub) order repository you will register as the IOrderRepository impl.
+/// For this exercise it always returns two fake order IDs.
+/// </summary>
+public class InMemoryOrderRepository : IOrderRepository
+{
+    public Task<IEnumerable<string>> GetOrderIdsAsync(string customerId)
+        => throw new NotImplementedException();
+    // Hint: return Task.FromResult<IEnumerable<string>>(new[] { "ORD-001", "ORD-002" });
+}
+
+/// <summary>
+/// A real (stub) email service you will register as the IEmailService impl.
+/// Store the last sent message in public properties so tests can inspect it.
+/// </summary>
+public class StubEmailService : IEmailService
+{
+    public string? LastTo      { get; private set; }
+    public string? LastSubject { get; private set; }
+    public string? LastBody    { get; private set; }
+
+    public Task SendAsync(string to, string subject, string body)
+        => throw new NotImplementedException();
+    // Hint: set the three properties, return Task.CompletedTask
+}
+
+// ---------------------------------------------------------------
+// Part B — your task: build and use a ServiceCollection.
+// ---------------------------------------------------------------
+
+/// <summary>
+/// Wire up the DI container and resolve OrderNotificationService from it.
+///
+/// Task: complete BuildServiceProvider() so that:
+///   • IOrderRepository  → InMemoryOrderRepository  (Transient)
+///   • IEmailService     → StubEmailService          (Singleton)
+///   • OrderNotificationService                      (Transient)
+///
+/// Then complete ResolveAndNotifyAsync() to:
+///   1. Call BuildServiceProvider().
+///   2. Resolve an OrderNotificationService from the provider.
+///   3. Call NotifyAsync("cust1", "test@example.com").
+///   4. Return the StubEmailService so the caller can inspect LastSubject etc.
+///
+/// Hint: provider.GetRequiredService&lt;T&gt;()
+/// </summary>
+public static class ContainerExercise
+{
+    public static ServiceProvider BuildServiceProvider()
+        => throw new NotImplementedException();
+
+    public static async Task<StubEmailService> ResolveAndNotifyAsync()
+        => throw new NotImplementedException();
+}
+
