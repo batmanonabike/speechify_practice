@@ -7,6 +7,15 @@ About the task
     You'll be working with a legacy payment system component that needs refactoring and performance optimization through caching.
     The test focuses on clean code principles (SOLID, KISS, DRY, YAGNI) and system architecture improvements.
 
+How to Schedule
+
+    Answer Some Quick Questions to help us understand you better.
+    Connect your GitHub account so we can verify your username.
+    Select a suitable date and time.
+    Click on the "Schedule Test" button.
+    Visit the provided link at the scheduled time and you will be redirected to the test page.
+    Note: You can only access the test within 30 minutes of the scheduled date and time.
+
 Setup
 
     Start Pre-Test Checks Button - It will start your screen recording and webcam, and share your camera and screen.

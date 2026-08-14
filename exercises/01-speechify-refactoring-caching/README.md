@@ -28,6 +28,13 @@ Implement the TODOs in `SpeechifyPractice.Refactor` so tests pass:
 - Focus on SOLID, KISS, DRY, YAGNI
 - Do not change test expectations unless clearly wrong
 - Keep refactors incremental and explainable
+- Push your work before the 50-minute window expires
+
+## Real test logistics to remember
+- You schedule the test ahead of time and connect your GitHub account
+- Access is only available within 30 minutes of the scheduled start time
+- Pre-test checks may start screen recording, webcam sharing, and screen sharing
+- The real test repo is created privately and you must push your code before access is revoked
 
 ## Run locally
 From Visual Studio:
