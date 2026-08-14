@@ -64,5 +64,11 @@ ArraysConstAliasExamples.Run();
 // DateTime, DateTimeOffset, TimeSpan, DateOnly/TimeOnly, TTL patterns
 DateTimeExamples.Run();
 
+// IEquatable<T>, IComparable<T>, IComparer<T>, GetHashCode
+EqualityExamples.Run();
+
+// Value equality — class / record / struct / record struct side-by-side
+ValueEqualityExamples.Run();
+
 // Note: 26_UnitTestingPatterns.cs is a reference file only (commented out).
 // See exercises/01-speechify-refactoring-caching/tests/ for runnable tests.
