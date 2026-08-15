@@ -3,6 +3,8 @@
 
 namespace CSharpExercises;
 
+using KeyAn = (int key, int distinctCount);
+
 public static class ArrayExercises
 {
     /// <summary>
@@ -11,7 +13,12 @@ public static class ArrayExercises
     /// Hint: sort descending and skip first — or use a set.
     /// </summary>
     public static int SecondLargest(int[] arr)
-        => throw new NotImplementedException();
+    {
+        var d = arr.Distinct().OrderByDescending(i => i).ToArray();
+        if (d.Length < 2)
+            throw new InvalidOperationException();
+        return d[1];
+    }
 
     /// <summary>
     /// Rotate a 2D matrix (square, n×n) 90 degrees clockwise IN PLACE.
@@ -25,7 +32,7 @@ public static class ArrayExercises
     /// appears in <paramref name="text"/> without allocating a new string.
     /// </summary>
     public static int CountChar(ReadOnlySpan<char> text, char c)
-        => throw new NotImplementedException();
+        => text.Count(c);
 
     // ---------------------------------------------------------------
     // Constants — define the values below as const or static readonly
@@ -36,11 +43,11 @@ public static class ArrayExercises
     /// Maximum number of items per page in the UI.
     /// Appropriate modifier: const int (compile-time constant).
     /// </summary>
-    public const int PageSize = 0; // TODO: replace 0 with the real value (e.g. 25)
+    public const int PageSize = 25; // TODO: replace 0 with the real value (e.g. 25)
 
     /// <summary>
     /// Default timeout expressed as a TimeSpan.
     /// Appropriate modifier: static readonly (not a compile-time constant).
     /// </summary>
-    public static readonly TimeSpan DefaultTimeout = TimeSpan.Zero; // TODO: e.g. 30 seconds
+    public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(30); // TODO: e.g. 30 seconds
 }
