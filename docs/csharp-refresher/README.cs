@@ -1,71 +1,66 @@
 // ============================================================
-// README — C# Refresher
+// README - C# Refresher
 // ============================================================
 //
-// FILE MAP
-// --------
-// COLLECTIONS
-// 01_Lists.cs                 — List<T>: add, remove, sort, search, slice
-// 02_Dictionaries.cs          — Dictionary<K,V>: CRUD, safe lookup, merge
-// 03_Sets.cs                  — HashSet<T> & SortedSet<T>: set algebra
-// 04_QueueStackLinkedList.cs  — Queue<T>, Stack<T>, LinkedList<T>
-// 05_Immutable.cs             — ImmutableList/Dictionary/HashSet/Array
-// 10_SortedCollections.cs     — SortedDictionary<K,V> & SortedList<K,V>
+// FILE MAP - follow this order
+// ----------------------------
+// FOUNDATIONS AND COLLECTIONS
+// 01_ArraysConstAliases.cs       - arrays, const, readonly, aliases
+// 02_Strings.cs                  - string creation, indexing, formatting
+// 03_Lists.cs                    - List<T>: add, remove, sort, search, slice
+// 04_Dictionaries.cs             - Dictionary<TKey,TValue>: CRUD and lookup
+// 05_Sets.cs                     - HashSet<T> and SortedSet<T>
+// 06_QueueStackLinkedList.cs     - Queue<T>, Stack<T>, LinkedList<T>
+// 07_Immutable.cs                - immutable collection variants
+// 08_IndexRangeOperators.cs      - index-from-end, ranges, slices, spread
 //
 // LINQ
-// 06_Linq_FilterProjectOrder.cs — Where, Select, SelectMany, OrderBy, Take/Skip
-// 07_Linq_AggregateGroup.cs     — Count/Sum/Avg/Min/Max, GroupBy, ToLookup
-// 08_Linq_JoinsZipSets.cs       — Join, GroupJoin, Zip, Union/Intersect/Except
-// 09_Linq_DeferredAndMisc.cs    — Deferred exec, Chunk, Range, query syntax, gotchas
+// 09_Linq_FilterProjectOrder.cs  - Where, Select, ordering, partitioning
+// 10_Linq_AggregateGroup.cs      - aggregation and grouping
+// 11_Linq_JoinsZipSets.cs        - joins, Zip, and set operations
+// 12_Linq_DeferredAndMisc.cs     - deferred execution and miscellaneous ops
 //
-// CLASSES & OOP
-// 11_Inheritance_BaseClass.cs — abstract/virtual/override/sealed, base() constructor
-// 12_Inheritance_Interfaces.cs— interface, multiple impl, explicit impl, default members
-// 13_Polymorphism.cs          — runtime dispatch, new (hiding), pattern matching, is/as
-// 14_Overloading.cs           — method overloading, params, operator overloading
-// 15_Properties.cs            — get/set, init-only, readonly, computed, validated, static
+// OBJECT-ORIENTED PROGRAMMING
+// 13_Properties.cs               - get/set, init, readonly, computed values
+// 14_Overloading.cs              - method and operator overloading
+// 15_Inheritance_Interfaces.cs   - interfaces and default members
+// 16_Inheritance_BaseClass.cs    - inheritance and base constructors
+// 17_Polymorphism.cs              - runtime dispatch and pattern matching
+// 18_Generics.cs                  - generic types, methods, and constraints
+// 19_DelegatesFunc.cs             - delegates, Func, Action, predicates, events
+// 20_AsyncAwait.cs                - async/await and asynchronous workflows
 //
+// TYPE SEMANTICS AND ORDERING
+// 21_DateTime_TTL.cs              - date/time types and TTL patterns
+// 22_RecordsVsClasses.cs          - records, classes, and structs
+// 23_Nullable.cs                  - nullable reference types and null safety
+// 24_PatternMatching.cs           - type, property, relational, and list patterns
+// 25_ValueEquality_AllCases.cs    - equality across classes, records, and structs
+// 26_IEquatable.cs                - typed equality and hash-code contracts
+// 27_IComparable.cs               - natural and custom ordering
+// 28_SortedCollections.cs         - SortedDictionary<TKey,TValue> and SortedList
 //
-// QUICK CHEAT-SHEET
-// -----------------
+// ARCHITECTURE AND PRACTICES
+// 29_ExtensionMethods.cs          - extension methods
+// 30_DesignPatterns.cs             - Decorator, Strategy, Adapter
+// 31_DependencyInjection.cs       - dependency injection concepts and patterns
+// 32_UnitTestingPatterns.cs       - Arrange/Act/Assert and test doubles
+// 33_Disposable.cs                - IDisposable, IAsyncDisposable, using
+// 34_ConcurrentCollections.cs     - thread-safe collections and patterns
 //
-// WHEN TO USE WHAT
-// ┌─────────────────────────┬────────────────────────────────────────────┐
-// │ Need                    │ Use                                        │
-// ├─────────────────────────┼────────────────────────────────────────────┤
-// │ Ordered, index access   │ List<T>  /  T[]  /  ImmutableArray<T>     │
-// │ Key→Value lookup        │ Dictionary<K,V>                            │
-// │ Key→Value, sorted iter  │ SortedDictionary<K,V>                      │
-// │ Key→Value, index access │ SortedList<K,V>                            │
-// │ Unique membership test  │ HashSet<T>                                 │
-// │ Unique + sorted         │ SortedSet<T>                               │
-// │ FIFO                    │ Queue<T>                                   │
-// │ LIFO                    │ Stack<T>                                   │
-// │ O(1) mid-list insert    │ LinkedList<T>                              │
-// │ Thread-safe dict        │ ConcurrentDictionary<K,V>                  │
-// │ Immutable sharing       │ ImmutableList/Dictionary/HashSet           │
-// └─────────────────────────┴────────────────────────────────────────────┘
-//
-// KEY LINQ OPERATORS
-// ──────────────────
+// LINQ CHEAT-SHEET
 // Filtering    : Where, OfType, Distinct, DistinctBy
 // Projection   : Select, SelectMany
-// Ordering     : OrderBy, OrderByDescending, ThenBy, ThenByDescending, Reverse
-// Partitioning : Take, Skip, TakeLast, SkipLast, TakeWhile, SkipWhile, Chunk
+// Ordering     : OrderBy, OrderByDescending, ThenBy, Reverse
+// Partitioning : Take, Skip, TakeLast, SkipLast, Chunk
 // Grouping     : GroupBy, ToLookup
 // Joining      : Join, GroupJoin, Zip
 // Set ops      : Union, Intersect, Except, UnionBy, IntersectBy, ExceptBy
-// Aggregation  : Count, Sum, Average, Min, Max, MinBy, MaxBy, Aggregate
+// Aggregation  : Count, Sum, Average, Min, Max, MinBy, Aggregate
 // Quantifiers  : Any, All, Contains
-// Elements     : First[OrDefault], Last[OrDefault], Single[OrDefault], ElementAt
-// Conversion   : ToList, ToArray, ToDictionary, ToHashSet, AsEnumerable
+// Elements     : First, Last, Single, ElementAt
+// Conversion   : ToList, ToArray, ToDictionary, ToHashSet
 // Generation   : Enumerable.Range, Enumerable.Repeat, Enumerable.Empty
-// Misc         : Append, Prepend, Concat, SequenceEqual
 //
-// DEFERRED vs IMMEDIATE
-// ──────────────────────
-// Deferred  (lazy)  : Where, Select, OrderBy, GroupBy, Join, …
-// Immediate (eager) : ToList, ToArray, ToDictionary, Count, Sum, First, Any, …
-//
-// Rule of thumb: if the return type is IEnumerable<T> → deferred.
-//                If the return type is a concrete collection or scalar → immediate.
+// Deferred operators return an IEnumerable<T> and execute later.
+// Materializing operators such as ToList, ToArray, Count, and First execute now.

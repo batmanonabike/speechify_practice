@@ -1,13 +1,15 @@
 using CollectionsRefresher;
 using CSharpRefresher;
 
-// Collections
+// Foundations and collections
+ArraysConstAliasExamples.Run();
+StringExamples.Run();
 ListExamples.Run();
 DictionaryExamples.Run();
 SetExamples.Run();
 QueueStackLinkedListExamples.Run();
 ImmutableExamples.Run();
-SortedCollectionExamples.Run();
+IndexRangeExamples.Run();
 
 // LINQ
 LinqPart1_FilterProjectOrder.Run();
@@ -16,59 +18,35 @@ LinqPart3_JoinsZipSets.Run();
 LinqPart4_DeferredAndMisc.Run();
 
 // OOP
-InheritanceExamples.Run();
-InterfaceExamples.Run();
-PolymorphismExamples.Run();
-OverloadExamples.Run();
 PropertyExamples.Run();
-
-// Strings
-StringExamples.Run();
+OverloadExamples.Run();
+InterfaceExamples.Run();
+InheritanceExamples.Run();
+PolymorphismExamples.Run();
 
 // Async / await
 await AsyncExamples.Run();
 
-// Generics
+// Generics and delegates
 GenericsExamples.Run();
-
-// Delegates, Func, Action
 DelegatesExamples.Run();
 
-// Design patterns
-DesignPatternsExamples.Run();
+// Date/time and type semantics
+DateTimeExamples.Run();
+RecordsVsClassesExamples.Run();
+NullableExamples.Run();
+PatternMatchingExamples.Run();
+ValueEqualityExamples.Run();
+EquatableExamples.Run();
+ComparableExamples.Run();
+SortedCollectionExamples.Run();
 
-// Dependency injection
+// Architecture and practices
+ExtensionMethodsExamples.Run();
+DesignPatternsExamples.Run();
 DependencyInjectionExamples.Run();
 
-// Records vs classes vs structs
-RecordsVsClassesExamples.Run();
-
-// Nullable reference types
-NullableExamples.Run();
-
-// Pattern matching
-PatternMatchingExamples.Run();
-
-// Extension methods
-ExtensionMethodsExamples.Run();
-
-// IDisposable / using
+// Resource management and concurrency
+// Note: 32_UnitTestingPatterns.cs is reference material only.
 await DisposableExamples.Run();
-
-// Concurrent collections
 await ConcurrentCollectionsExamples.Run();
-
-// Arrays, const, readonly, using aliases
-ArraysConstAliasExamples.Run();
-
-// DateTime, DateTimeOffset, TimeSpan, DateOnly/TimeOnly, TTL patterns
-DateTimeExamples.Run();
-
-// IEquatable<T>, IComparable<T>, IComparer<T>, GetHashCode
-EqualityExamples.Run();
-
-// Value equality — class / record / struct / record struct side-by-side
-ValueEqualityExamples.Run();
-
-// Note: 26_UnitTestingPatterns.cs is a reference file only (commented out).
-// See exercises/01-speechify-refactoring-caching/tests/ for runnable tests.

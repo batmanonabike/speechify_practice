@@ -19,7 +19,7 @@ dependency injection, and a TTL-based caching layer.
 ### 02 — C# Refresher Exercises
 `exercises/02-csharp-refresher/`
 
-Hands-on exercises covering 32 C# topics. Each topic has:
+Hands-on exercises covering 34 C# topics in dependency-aware order. Each topic has:
 - A **stub file** (`src/`) with guided XML-doc comments and `NotImplementedException` bodies to implement.
 - An **xUnit test file** (`tests/`) that goes green once your implementation is correct.
 
@@ -27,45 +27,47 @@ Hands-on exercises covering 32 C# topics. Each topic has:
 
 | # | Stub file | Topic |
 |---|-----------|-------|
-| 01 | `Ex01_Lists.cs` | `List<T>` — filter, sort, deduplicate, rotate |
-| 02 | `Ex02_Dictionaries.cs` | Dictionaries — frequency, invert, merge, group |
-| 03 | `Ex03_Sets.cs` | HashSet — intersection, symmetric diff, subsets |
-| 04 | `Ex04_QueueStackLinkedList.cs` | Queue, Stack, LinkedList |
-| 05 | `Ex05_Immutable.cs` | Immutable collections |
-| 06 | `Ex06_Linq.cs` | LINQ — filtering & projection |
-| 07 | `Ex07_LinqAggregation.cs` | LINQ — grouping & aggregation |
-| 08 | `Ex08_LinqJoins.cs` | LINQ — joins & zip |
-| 09 | `Ex09_LinqDeferred.cs` | LINQ — deferred execution |
-| 10 | `Ex10_SortedCollections.cs` | SortedDictionary, SortedList, SortedSet |
-| 11 | `Ex11_Inheritance.cs` | Inheritance & base-class constructors |
-| 12 | `Ex12_Interfaces.cs` | Interfaces & multiple implementation |
-| 13 | `Ex13_Polymorphism.cs` | Polymorphism & virtual dispatch |
-| 14 | `Ex14_OverloadingProperties.cs` | Method overloading & properties |
-| 15 | `Ex15_Strings.cs` | String manipulation & StringBuilder |
-| 16 | `Ex16_Async.cs` | async/await, Task.WhenAll, IAsyncEnumerable |
-| 17 | `Ex17_Generics.cs` | Generics & type constraints |
-| 18 | `Ex18_Delegates.cs` | Delegates, Func, Action, events |
-| 19 | `Ex19_DesignPatterns.cs` | Strategy, Decorator, Factory patterns |
-| 20 | `Ex20_DI.cs` | Constructor injection & `Microsoft.Extensions.DependencyInjection` |
-| 21 | `Ex21_RecordsVsClasses.cs` | Records vs classes, `with`-expressions |
-| 22 | `Ex22_Nullable.cs` | Nullable reference types & null operators |
-| 23 | `Ex23_PatternMatching.cs` | Pattern matching & switch expressions |
-| 24 | `Ex24_Extensions.cs` | Extension methods |
-| 25 | `Ex25_TestableCode.cs` | Writing testable code & fake dependencies |
-| 26 | `Ex26_Disposable.cs` | IDisposable & IAsyncDisposable |
-| 27 | `Ex27_Concurrent.cs` | Concurrent collections & thread safety |
-| 28 | `Ex28_Arrays.cs` | Arrays, `const`, `Span<T>` |
-| 29 | `Ex29_DateTime_TTL.cs` | DateTime, DateTimeOffset & TTL cache |
-| 30 | `Ex30_IEquatable.cs` | IEquatable\<T\>, IComparable\<T\>, operators |
-| 31 | `Ex31_ValueEquality.cs` | Value equality — class, record, struct, record struct |
-| 32 | `Ex32_IComparable.cs` | IComparable\<T\>, IComparer\<T\>, sorting |
+| 01 | `Ex01_ArraysConstAliases.cs` | Arrays, const, readonly, aliases |
+| 02 | `Ex02_Strings.cs` | String manipulation and StringBuilder |
+| 03 | `Ex03_Lists.cs` | List filtering, sorting, deduplication, rotation |
+| 04 | `Ex04_Dictionaries.cs` | Dictionary lookup, merge, and grouping |
+| 05 | `Ex05_Sets.cs` | HashSet and set operations |
+| 06 | `Ex06_QueueStackLinkedList.cs` | Queue, Stack, LinkedList |
+| 07 | `Ex07_Immutable.cs` | Immutable collections |
+| 08 | `Ex08_IndexRangeSpread.cs` | Index, range, and spread operators |
+| 09 | `Ex09_Linq_Filtering.cs` | LINQ filtering and projection |
+| 10 | `Ex10_LinqAggregation.cs` | LINQ grouping and aggregation |
+| 11 | `Ex11_LinqJoins.cs` | LINQ joins, Zip, and set operations |
+| 12 | `Ex12_LinqDeferred.cs` | LINQ deferred execution |
+| 13 | `Ex13_Properties.cs` | Properties and computed values |
+| 14 | `Ex14_Overloading.cs` | Method and operator overloading |
+| 15 | `Ex15_Interfaces.cs` | Interfaces and multiple implementation |
+| 16 | `Ex16_Inheritance.cs` | Inheritance and base constructors |
+| 17 | `Ex17_Polymorphism.cs` | Polymorphism and virtual dispatch |
+| 18 | `Ex18_Generics.cs` | Generics and type constraints |
+| 19 | `Ex19_Delegates.cs` | Delegates, Func, Action, events |
+| 20 | `Ex20_Async.cs` | async/await, Task.WhenAll, IAsyncEnumerable |
+| 21 | `Ex21_DateTime_TTL.cs` | DateTime, DateTimeOffset, TTL cache |
+| 22 | `Ex22_RecordsVsClasses.cs` | Records, classes, and structs |
+| 23 | `Ex23_Nullable.cs` | Nullable reference types and null operators |
+| 24 | `Ex24_PatternMatching.cs` | Pattern matching and switch expressions |
+| 25 | `Ex25_ValueEquality.cs` | Value equality across type kinds |
+| 26 | `Ex26_IEquatable.cs` | IEquatable<T> and hash-code contracts |
+| 27 | `Ex27_IComparable.cs` | IComparable<T>, IComparer<T>, sorting |
+| 28 | `Ex28_SortedCollections.cs` | SortedDictionary, SortedList, SortedSet |
+| 29 | `Ex29_Extensions.cs` | Extension methods |
+| 30 | `Ex30_DesignPatterns.cs` | Strategy, Decorator, Factory patterns |
+| 31 | `Ex31_DI.cs` | Constructor injection and dependency injection |
+| 32 | `Ex32_TestableCode.cs` | Testable code and fake dependencies |
+| 33 | `Ex33_Disposable.cs` | IDisposable and IAsyncDisposable |
+| 34 | `Ex34_Concurrent.cs` | Concurrent collections and thread safety |
 
 ---
 
 ## Reference Docs
 `docs/csharp-refresher/`
 
-Read-only reference examples covering the same 32 topics — useful as an "answer key"
+Read-only reference examples covering the same 34 topics — useful as an "answer key"
 or quick syntax reminder before attempting the exercises.
 
 **Build:** `docs/csharp-refresher/CSharpRefresher.csproj` (console app, `net10.0`)
