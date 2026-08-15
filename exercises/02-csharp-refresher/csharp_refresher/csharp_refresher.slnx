@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="../src/CSharpExercises.csproj" />
-  <Project Path="../tests/CSharpExercises.Tests.csproj" />
-</Solution>
