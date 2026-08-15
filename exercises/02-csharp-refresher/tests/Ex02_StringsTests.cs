@@ -27,7 +27,8 @@ public class Ex02_StringsTests
     public void Truncate_LongerThanMax_AddsEllipsis()
     {
         var result = StringExercises.Truncate("hello world", 5);
-        Assert.StartsWith("hello", result);
+        Assert.Equal("hell…", result);
+        Assert.StartsWith("hell", result);
         Assert.EndsWith("…", result);
     }
 
