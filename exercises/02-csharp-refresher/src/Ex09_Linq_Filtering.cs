@@ -13,14 +13,19 @@ public static class LinqFilteringExercises
     /// </summary>
     public static IEnumerable<string> ProductNamesInCategory(
         IEnumerable<OrderLine> lines, string category)
-        => throw new NotImplementedException();
+    {
+        return lines
+            .Where(x => String.Equals(x.Category, category))
+            .OrderBy(x => x.Product)
+            .Select(x => x.Product);
+    }
 
     /// <summary>
     /// Return the top <paramref name="n"/> most expensive lines (by Price descending).
     /// Hint: OrderByDescending + Take.
     /// </summary>
     public static IEnumerable<OrderLine> TopByPrice(IEnumerable<OrderLine> lines, int n)
-        => throw new NotImplementedException();
+        => lines.OrderByDescending(x => x.Price).Take(n);
 
     /// <summary>
     /// Return all lines where Price * Quantity exceeds <paramref name="threshold"/>.
@@ -28,6 +33,8 @@ public static class LinqFilteringExercises
     /// </summary>
     public static IEnumerable<OrderLine> HighValueLines(
         IEnumerable<OrderLine> lines, decimal threshold)
-        => throw new NotImplementedException();
+    {
+        return lines.Where(x => x.Price * x.Quantity > threshold);
+    }
 }
 
