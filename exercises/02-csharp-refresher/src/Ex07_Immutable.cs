@@ -13,7 +13,10 @@ public static class ImmutableExercises
     /// Hint: ImmutableList.RemoveAll or rebuild with Where + ToImmutableList.
     /// </summary>
     public static ImmutableList<int> RemoveNegatives(ImmutableList<int> source)
-        => throw new NotImplementedException();
+    {
+        ImmutableList<int> result = source.RemoveAll(x => x < 0);
+        return result;
+    }
 
     /// <summary>
     /// Given an ImmutableDictionary<string,int>, add or update all entries from
@@ -23,7 +26,14 @@ public static class ImmutableExercises
     public static ImmutableDictionary<string, int> ApplyUpdates(
         ImmutableDictionary<string, int> original,
         IEnumerable<KeyValuePair<string, int>> updates)
-        => throw new NotImplementedException();
+    {
+        return original.SetItems(updates); // Makes a copy.
+
+        //ImmutableDictionary<string, int> result = ImmutableDictionary<string, int>.Empty
+        //    .AddRange(original)
+        //    .SetItems(updates);
+        //return result;
+    }
 
     /// <summary>
     /// Build an ImmutableList<int> containing the squares of 1..n using the Builder
@@ -31,5 +41,11 @@ public static class ImmutableExercises
     /// Hint: ImmutableList.CreateBuilder(), loop, ToImmutable().
     /// </summary>
     public static ImmutableList<int> SquaresUpTo(int n)
-        => throw new NotImplementedException();
+    {
+        var builder = ImmutableList.CreateBuilder<int>();
+        for (int x = 1; x <= n; x++)
+            builder.Add(x * x);
+
+        return builder.ToImmutable();
+    }
 }
