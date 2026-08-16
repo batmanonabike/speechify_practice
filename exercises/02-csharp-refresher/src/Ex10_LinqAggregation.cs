@@ -10,7 +10,12 @@ public static class LinqAggregationExercises
     /// Hint: GroupBy + Sum.
     /// </summary>
     public static Dictionary<string, decimal> RevenueByCategory(IEnumerable<OrderLine> lines)
-        => throw new NotImplementedException();
+    {
+        var groupedLines = lines.GroupBy(b => b.Category);
+        return groupedLines.ToDictionary(
+            a => a.Key,
+            a => a.Sum(line => line.Price * line.Quantity));
+    }
 
     /// <summary>
     /// Return the single OrderLine with the highest total revenue (Price * Quantity).
@@ -18,12 +23,19 @@ public static class LinqAggregationExercises
     /// Hint: MaxBy.
     /// </summary>
     public static OrderLine HighestRevenueItem(IEnumerable<OrderLine> lines)
-        => throw new NotImplementedException();
+    {
+        return lines.MaxBy(x => x.Price * x.Quantity) ?? throw new InvalidOperationException();
+    }
 
     /// <summary>
     /// Return the average price per category as a dictionary.
     /// Hint: GroupBy + Average.
     /// </summary>
     public static Dictionary<string, double> AveragePriceByCategory(IEnumerable<OrderLine> lines)
-        => throw new NotImplementedException();
+    {
+        var groupedLines = lines.GroupBy(b => b.Category);
+        return groupedLines.ToDictionary(
+            a => a.Key,
+            a => a.Average(line => Convert.ToDouble(line.Price)));
+    }
 }
