@@ -17,7 +17,7 @@ public class Ex17_PolymorphismTests
     {
         var longMsg = new string('x', 200);
         var n       = new SmsNotification("07700", longMsg);
-        Assert.True(n.Format().Contains(new string('x', 160)));
+        Assert.Equal(160, n.Format().Length);
         Assert.DoesNotContain(new string('x', 161), n.Format());
     }
 
