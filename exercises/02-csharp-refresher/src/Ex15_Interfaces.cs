@@ -32,16 +32,12 @@ public interface IScalable
 /// Area = π r²  Perimeter = 2πr
 /// Scale returns a new ExerciseCircle with radius * factor.
 /// </summary>
-public class ExerciseCircle : IArea, IPerimeter, IScalable
+public class ExerciseCircle(double radius) : IArea, IPerimeter, IScalable
 {
-    public double Radius { get; }
-
-    public ExerciseCircle(double radius)
-        => Radius = radius;
-
-    public double Area()      => throw new NotImplementedException();
-    public double Perimeter() => throw new NotImplementedException();
-    public IScalable Scale(double factor) => throw new NotImplementedException();
+    public double Radius { get; } = radius;
+    public double Area() => Math.PI * Math.Pow(Radius, 2);
+    public double Perimeter() => 2 * Math.PI * Radius;
+    public IScalable Scale(double factor) => new ExerciseCircle(Radius * factor);
 }
 
 /// <summary>
@@ -49,17 +45,13 @@ public class ExerciseCircle : IArea, IPerimeter, IScalable
 /// Area = width * height  Perimeter = 2*(width+height)
 /// Scale returns a new ExerciseRectangle with both dimensions * factor.
 /// </summary>
-public class ExerciseRectangle : IArea, IPerimeter, IScalable
+public class ExerciseRectangle(double width, double height) : IArea, IPerimeter, IScalable
 {
-    public double Width  { get; }
-    public double Height { get; }
-
-    public ExerciseRectangle(double width, double height)
-    { Width = width; Height = height; }
-
-    public double Area()      => throw new NotImplementedException();
-    public double Perimeter() => throw new NotImplementedException();
-    public IScalable Scale(double factor) => throw new NotImplementedException();
+    public double Width { get; } = width;
+    public double Height { get; } = height;
+    public double Area() => Width * Height;
+    public double Perimeter() => Width * 2 + Height * 2;
+    public IScalable Scale(double factor) => new ExerciseRectangle(Width * factor, Height * factor);
 }
 
 /// <summary>
@@ -68,6 +60,5 @@ public class ExerciseRectangle : IArea, IPerimeter, IScalable
 /// </summary>
 public static class ShapeHelper
 {
-    public static double TotalArea(IEnumerable<IArea> shapes)
-        => throw new NotImplementedException();
+    public static double TotalArea(IEnumerable<IArea> shapes) => shapes.Sum(a => a.Area());
 }
