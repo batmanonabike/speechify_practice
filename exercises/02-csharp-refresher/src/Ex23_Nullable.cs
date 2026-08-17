@@ -36,6 +36,7 @@ public static class NullableExercises
     /// the value using <paramref name="factory"/> and store it.
     /// Return the (possibly newly created) value.
     /// </summary>
+    /// NOTE: ??= WILL NOT WORK AGAINST A Dictionary.  This comment is shite.
     public static TValue GetOrAdd<TKey, TValue>(
         Dictionary<TKey, TValue> cache,
         TKey key,
