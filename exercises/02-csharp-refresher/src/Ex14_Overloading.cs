@@ -9,13 +9,13 @@ namespace CSharpExercises;
 public static class MathHelper
 {
     /// <summary>Sum of two ints.</summary>
-    public static int Add(int a, int b) => throw new NotImplementedException();
+    public static int Add(int a, int b) => a + b;
 
     /// <summary>Sum of three ints.</summary>
-    public static int Add(int a, int b, int c) => throw new NotImplementedException();
+    public static int Add(int a, int b, int c) => a + b + c;
 
     /// <summary>Sum of a params array of doubles.</summary>
-    public static double Add(params double[] values) => throw new NotImplementedException();
+    public static double Add(params double[] values) => values.Sum(x => x);
 
     /// <summary>
     /// Clamp <paramref name="value"/> between <paramref name="min"/> and
@@ -23,5 +23,13 @@ public static class MathHelper
     /// Hint: use generic constraint.
     /// </summary>
     public static T Clamp<T>(T value, T min, T max) where T : IComparable<T>
-        => throw new NotImplementedException();
+    {
+        if (value.CompareTo(min) < 0)
+            return min;
+
+        if (value.CompareTo(max) > 0)
+            return max;
+
+        return value;
+    }
 }
