@@ -21,16 +21,17 @@ public record ProductRecord(string Id, string Name, decimal Price);
 /// </summary>
 public class ProductClass
 {
-    public string  Id    { get; }
-    public string  Name  { get; }
+    public string Id { get; }
+    public string Name { get; }
     public decimal Price { get; }
 
     public ProductClass(string id, string name, decimal price)
     { Id = id; Name = name; Price = price; }
 
     // TODO: override Equals (by Id) and GetHashCode
-    public override bool Equals(object? obj) => throw new NotImplementedException();
-    public override int  GetHashCode()       => throw new NotImplementedException();
+    public override bool Equals(object? obj) 
+        => obj is ProductClass other && string.Equals(Id, other.Id, StringComparison.Ordinal);
+    public override int GetHashCode() => Id.GetHashCode();
 }
 
 public static class RecordExercises
@@ -40,8 +41,12 @@ public static class RecordExercises
     /// <paramref name="amount"/> using a with-expression.
     /// </summary>
     public static object IncreasePrice(object product, decimal amount)
-        // TODO: accept the actual record type and use `with`
-        => throw new NotImplementedException();
+    {
+        if (product is ProductRecord record)
+            return record with { Price = record.Price + amount };
+
+        throw new ArgumentException("Expected: ProductRecord", nameof(product));
+    }
 
     /// <summary>
     /// Given two ProductRecord instances, demonstrate that records compare by
@@ -49,5 +54,10 @@ public static class RecordExercises
     /// Hint: just use ==  (records do this automatically).
     /// </summary>
     public static bool AreEqual(object a, object b)
-        => throw new NotImplementedException();
+    {
+        if (a is ProductRecord aProduct && b is ProductRecord bProduct)
+            return aProduct == bProduct;
+
+        return false;
+    }
 }
