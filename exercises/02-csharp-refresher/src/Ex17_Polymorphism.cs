@@ -27,12 +27,9 @@ public abstract class Notification
 // ---------------------------------------------------------------
 
 /// <summary>Channel = "Email". No override of Format needed.</summary>
-public class EmailNotification : Notification
+public class EmailNotification(string recipient, string message) : Notification(recipient, message)
 {
-    public EmailNotification(string recipient, string message)
-        : base(recipient, message) { }
-
-    public override string Channel() => throw new NotImplementedException();
+    public override string Channel() => "Email";
 }
 
 /// <summary>
@@ -40,13 +37,14 @@ public class EmailNotification : Notification
 /// Override Format to truncate Message to 160 chars if longer.
 /// Format: "[SMS] To:{Recipient}: {truncated message}"
 /// </summary>
-public class SmsNotification : Notification
+public class SmsNotification(string recipient, string message) : Notification(recipient, message)
 {
-    public SmsNotification(string recipient, string message)
-        : base(recipient, message) { }
-
-    public override string Channel() => throw new NotImplementedException();
-    public override string Format()  => throw new NotImplementedException();
+    public override string Channel() => "SMS";
+    public override string Format()
+    {
+        var format = base.Format();
+        return format.Length <= 160 ? format : format[..160];
+    }
 }
 
 /// <summary>
@@ -62,7 +60,7 @@ public class PushNotification : Notification
         : base(recipient, message)
         => Priority = priority;
 
-    public override string Channel() => throw new NotImplementedException();
+    public override string Channel() => "Push";
 }
 
 /// <summary>
@@ -74,5 +72,7 @@ public static class NotificationDispatcher
 {
     public static IEnumerable<Notification> FilterByChannel(
         IEnumerable<Notification> notifications, string channel)
-        => throw new NotImplementedException();
+    {
+        return notifications.Where(x => String.Equals(x.Channel(), channel, StringComparison.OrdinalIgnoreCase));
+    }
 }
