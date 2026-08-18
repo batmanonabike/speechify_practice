@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Speechify.Billing.Legacy</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Speechify.Billing.Abstractions\Speechify.Billing.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

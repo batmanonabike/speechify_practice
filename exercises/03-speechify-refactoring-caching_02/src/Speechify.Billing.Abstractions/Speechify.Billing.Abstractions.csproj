@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Speechify.Billing.Abstractions</RootNamespace>
+  </PropertyGroup>
+
+</Project>

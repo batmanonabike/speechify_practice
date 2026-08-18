@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Speechify.Billing</RootNamespace>
+  </PropertyGroup>
+
+  <!--
+    This project references Abstractions ONLY, never Speechify.Billing.Legacy.
+    DesignTests enforces that: wrapping BillingEngine is not a refactor.
+    Do not add a reference to the legacy project.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\Speechify.Billing.Abstractions\Speechify.Billing.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
