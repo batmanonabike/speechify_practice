@@ -22,7 +22,7 @@ public readonly struct NormalCurrencyCode(string currencyCode)
     }
 }
 
-public class BetterCachingRateApi_EnforceNormalised : IRateApi
+public class CachingRateApi_EnforceNormalised : IRateApi
 {
     private const int MinTtlMs = 10;
     private sealed record CacheEntry(decimal Rate, DateTimeOffset Timestamp);
@@ -34,7 +34,7 @@ public class BetterCachingRateApi_EnforceNormalised : IRateApi
     private readonly Dictionary<string, CacheEntry> _cache = [];
     private readonly Dictionary<string, Lock> _concurrencyGates = [];
 
-    public BetterCachingRateApi_EnforceNormalised(IRateApi realApi, TimeProvider timeProvider, int ttlMs)
+    public CachingRateApi_EnforceNormalised(IRateApi realApi, TimeProvider timeProvider, int ttlMs)
     {
         ArgumentNullException.ThrowIfNull(realApi);
         ArgumentNullException.ThrowIfNull(timeProvider);

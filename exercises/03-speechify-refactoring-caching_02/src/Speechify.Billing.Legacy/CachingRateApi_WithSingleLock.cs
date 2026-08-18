@@ -7,7 +7,7 @@ public interface ISimpleCachingRateApi : IRateApi
     void ClearCache();
 }
 
-public class SimpleCachingRateApi : ISimpleCachingRateApi
+public class CachingRateApi_WithSingleLock : ISimpleCachingRateApi
 {
     private const int MinTtlMs = 10;
     private sealed record CacheEntry(decimal Rate, DateTimeOffset Timestamp);
@@ -18,7 +18,7 @@ public class SimpleCachingRateApi : ISimpleCachingRateApi
     private readonly TimeProvider _timeProvider;
     private readonly Dictionary<string, CacheEntry> _cache = [];
 
-    public SimpleCachingRateApi(IRateApi realApi, TimeProvider timeProvider, int ttlMs)
+    public CachingRateApi_WithSingleLock(IRateApi realApi, TimeProvider timeProvider, int ttlMs)
     {
         ArgumentNullException.ThrowIfNull(realApi);
         ArgumentNullException.ThrowIfNull(timeProvider);

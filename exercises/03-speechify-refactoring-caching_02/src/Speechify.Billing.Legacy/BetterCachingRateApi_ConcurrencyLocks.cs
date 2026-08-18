@@ -2,7 +2,7 @@ using Speechify.Billing.Abstractions;
 
 namespace Speechify.Billing.Legacy;
 
-public class BetterCachingRateApi : IRateApi
+public class BetterCachingRateApi_ConcurrencyLocks : IRateApi
 {
     private const int MinTtlMs = 10;
     private sealed record CacheEntry(decimal Rate, DateTimeOffset Timestamp);
@@ -14,7 +14,7 @@ public class BetterCachingRateApi : IRateApi
     private readonly Dictionary<string, CacheEntry> _cache = [];
     private readonly Dictionary<string, Lock> _concurrencyGates = [];
 
-    public BetterCachingRateApi(IRateApi realApi, TimeProvider timeProvider, int ttlMs)
+    public BetterCachingRateApi_ConcurrencyLocks(IRateApi realApi, TimeProvider timeProvider, int ttlMs)
     {
         ArgumentNullException.ThrowIfNull(realApi);
         ArgumentNullException.ThrowIfNull(timeProvider);
