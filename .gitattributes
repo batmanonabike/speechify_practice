@@ -14,10 +14,13 @@
 # Project / solution files
 *.csproj  text eol=lf
 *.vbproj  text eol=lf
-*.sln     text eol=lf
-*.slnx    text eol=lf
 *.props   text eol=lf
 *.targets text eol=lf
+
+# Visual Studio rewrites solution files as CRLF whenever it opens them, so
+# forcing LF here leaves them permanently dirty in git status. Match the tool.
+*.sln     text eol=crlf
+*.slnx    text eol=crlf
 
 # Config / data
 *.json  text eol=lf

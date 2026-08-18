@@ -1,0 +1,50 @@
+# Repository-wide editor conventions.
+#
+# root = true stops EditorConfig searching parent directories, so nothing in
+# c:\source\ or above can leak settings into this repo.
+#
+# The end_of_line values here deliberately mirror .gitattributes, so the editor
+# writes exactly the line endings git expects and solution files stop showing up
+# as modified the moment Visual Studio opens them.
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+[*.cs]
+indent_size = 4
+end_of_line = lf
+
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+dotnet_sort_system_directives_first = true
+csharp_style_namespace_declarations = file_scoped:suggestion
+
+[*.{csproj,props,targets}]
+indent_size = 2
+end_of_line = lf
+
+# Visual Studio rewrites solution files as CRLF whenever it opens them.
+[*.{sln,slnx}]
+indent_size = 2
+end_of_line = crlf
+
+[*.{json,yml,yaml,xml}]
+indent_size = 2
+end_of_line = lf
+
+[*.md]
+indent_size = 2
+end_of_line = lf
+# Two trailing spaces are a hard line break in Markdown.
+trim_trailing_whitespace = false
+
+[*.{ps1,cmd,bat}]
+indent_size = 4
+end_of_line = crlf
