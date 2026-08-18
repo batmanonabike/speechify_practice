@@ -1,13 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="..\SpeechifyPractice.Legacy\SpeechifyPractice.Legacy.csproj" />
-  </ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <!--
+    No reference to SpeechifyPractice.Legacy on purpose. The refactored code
+    replaces the legacy processor rather than wrapping it; only the tests need
+    to see both, so that they can compare the two.
+  -->
 
 </Project>
