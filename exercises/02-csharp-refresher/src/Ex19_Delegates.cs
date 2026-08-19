@@ -11,7 +11,10 @@ public static class DelegateExercises
     /// </summary>
     public static IEnumerable<TResult> Map<T, TResult>(
         IEnumerable<T> source, Func<T, TResult> transform)
-        => throw new NotImplementedException();
+    {
+        foreach (var item in source)
+            yield return transform(item);
+    }
 
     /// <summary>
     /// Compose two Func delegates: return a new Func that first applies
@@ -21,14 +24,22 @@ public static class DelegateExercises
     public static Func<T, TResult> Compose<T, TMiddle, TResult>(
         Func<T, TMiddle> first,
         Func<TMiddle, TResult> second)
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(first);
+        ArgumentNullException.ThrowIfNull(second);
+        return a => second(first(a));
+    }
 
     /// <summary>
     /// Run <paramref name="action"/> <paramref name="times"/> times,
     /// passing the current iteration index (0-based).
     /// </summary>
     public static void Repeat(int times, Action<int> action)
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(action);
+        for (int n = 0; n < times; n++)
+            action(n);
+    }
 
     /// <summary>
     /// Return a cached (memoized) version of <paramref name="fn"/>.
@@ -37,7 +48,21 @@ public static class DelegateExercises
     /// </summary>
     public static Func<TArg, TResult> Memoize<TArg, TResult>(Func<TArg, TResult> fn)
         where TArg : notnull
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(fn);
+
+        var cache = new Dictionary<TArg, TResult>();
+
+        return (arg) =>
+        {
+            if (cache.TryGetValue(arg, out var result))
+                return result;
+
+            result = fn(arg);
+            cache[arg] = result;
+            return result;
+        };
+    }
 }
 
 // ---------------------------------------------------------------
@@ -61,6 +86,14 @@ public class StockTicker
     public double Price
     {
         get => _price;
-        set => throw new NotImplementedException();
+        set
+        {
+            if (_price != value)
+            {
+                _price = value;
+                PriceChanged?.Invoke(this, value);
+            }
+        }
+
     }
 }

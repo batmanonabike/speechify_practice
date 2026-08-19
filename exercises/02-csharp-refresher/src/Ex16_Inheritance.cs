@@ -13,13 +13,13 @@ namespace CSharpExercises;
 /// Abstract method: FuelType() returns a string e.g. "Petrol".
 /// Virtual method: Describe() returns "{Make} ({Year}) - {FuelType()}".
 /// </summary>
-public abstract class Vehicle
+public abstract class Vehicle(string make, int year)
 {
-    // TODO: add Make (string) and Year (int) readonly properties
-    // TODO: virtual string Describe() returns "{Make} ({Year}) - {FuelType()}"
-    protected Vehicle(string make, int year) { /* TODO: store make and year */ }
+    public int Year { get; } = year; 
+    public string Make { get; } = make;
+
     public abstract string FuelType();
-    public virtual string Describe() => throw new NotImplementedException();
+    public virtual string Describe() => $"{Make} ({Year}) - {FuelType()}";
 }
 
 /// <summary>
@@ -28,14 +28,11 @@ public abstract class Vehicle
 /// Override Describe() to append " [{engineCC}cc]" to the base description.
 /// Hint: call base.Describe() then concatenate.
 /// </summary>
-public class PetrolCar : Vehicle
+// TODO: store engineCC, chain to base constructor
+public class PetrolCar(string make, int year, int engineCC) : Vehicle(make, year)
 {
-    // TODO: store engineCC, chain to base constructor
-    public PetrolCar(string make, int year, int engineCC)
-        : base(make, year) { /* TODO: store engineCC */ }
-
-    public override string FuelType() => throw new NotImplementedException();
-    public override string Describe()  => throw new NotImplementedException();
+    public override string FuelType() => "Petrol";
+    public override string Describe()  => $"{base.Describe()} [{engineCC}cc]";
 }
 
 /// <summary>
@@ -43,14 +40,10 @@ public class PetrolCar : Vehicle
 /// Constructor: make, year, rangeKm (int).
 /// Add a property RangeKm.
 /// </summary>
-public class ElectricCar : Vehicle
+public class ElectricCar(string make, int year, int rangeKm) : Vehicle(make, year)
 {
-    // TODO: store rangeKm and call base constructor
-    public ElectricCar(string make, int year, int rangeKm)
-        : base(make, year) { /* TODO: store rangeKm */ }
-
-    public int RangeKm => throw new NotImplementedException();
-    public override string FuelType() => throw new NotImplementedException();
+    public int RangeKm => rangeKm;
+    public override string FuelType() => "Electric";
 }
 
 /// <summary>
@@ -62,8 +55,8 @@ public sealed class AutonomousElectricCar : ElectricCar
 {
     // TODO: store autopilotLevel, chain to base(make, year, rangeKm)
     public AutonomousElectricCar(string make, int year, int rangeKm, int autopilotLevel)
-        : base(make, year, rangeKm) { /* TODO: store autopilotLevel */ }
+        : base(make, year, rangeKm) { AutopilotLevel = autopilotLevel; }
 
-    public int AutopilotLevel => throw new NotImplementedException();
-    public sealed override string Describe() => throw new NotImplementedException();
+    public int AutopilotLevel { get; init; }
+    public sealed override string Describe() => $"{base.Describe()} [Autopilot L{AutopilotLevel}]";
 }

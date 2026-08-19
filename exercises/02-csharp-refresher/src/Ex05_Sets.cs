@@ -10,7 +10,11 @@ public static class SetExercises
     /// Hint: HashSet.IntersectWith, or LINQ Intersect.
     /// </summary>
     public static IEnumerable<int> Intersection(IEnumerable<int> a, IEnumerable<int> b)
-        => throw new NotImplementedException();
+    {
+        var result = new HashSet<int>(a);
+        result.IntersectWith(b);
+        return result;
+    }
 
     /// <summary>
     /// Return elements that appear in <paramref name="a"/> OR <paramref name="b"/> but not both
@@ -18,7 +22,11 @@ public static class SetExercises
     /// Hint: HashSet.SymmetricExceptWith.
     /// </summary>
     public static IEnumerable<int> SymmetricDifference(IEnumerable<int> a, IEnumerable<int> b)
-        => throw new NotImplementedException();
+    {
+        var result = new HashSet<int>(a);
+        result.SymmetricExceptWith(b);
+        return result;
+    }
 
     /// <summary>
     /// Return true if <paramref name="subset"/> is a proper subset of <paramref name="superset"/>
@@ -26,7 +34,10 @@ public static class SetExercises
     /// Hint: HashSet.IsProperSubsetOf.
     /// </summary>
     public static bool IsProperSubset(IEnumerable<int> subset, IEnumerable<int> superset)
-        => throw new NotImplementedException();
+    {
+        var hashSet = new HashSet<int>(subset);
+        return hashSet.IsProperSubsetOf(superset);
+    }
 
     /// <summary>
     /// Given a list that may contain duplicates, return the duplicate values only
@@ -35,5 +46,16 @@ public static class SetExercises
     /// Hint: track seen items with a HashSet; collect duplicates in a SortedSet.
     /// </summary>
     public static IEnumerable<int> FindDuplicates(IEnumerable<int> source)
-        => throw new NotImplementedException();
+    {
+        var hashSet = new HashSet<int>();
+        var result = new SortedSet<int>();
+
+        foreach (var item in source)
+        {
+            if (!hashSet.Add(item))
+                result.Add(item);
+        }
+
+        return result;
+    }
 }

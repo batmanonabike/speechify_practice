@@ -10,7 +10,7 @@ public static class DateTimeExercises
     /// e.g. Jan 1 → Jan 3  = 2 days.
     /// </summary>
     public static int DaysBetween(DateTimeOffset a, DateTimeOffset b)
-        => throw new NotImplementedException();
+        => (int)(b - a).Duration().TotalDays;
 
     /// <summary>
     /// Given a UTC DateTimeOffset, convert it to the specified
@@ -18,7 +18,11 @@ public static class DateTimeExercises
     /// using TimeZoneInfo.
     /// </summary>
     public static DateTimeOffset ConvertToZone(DateTimeOffset utc, string timeZoneId)
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(timeZoneId);
+        var timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+        return TimeZoneInfo.ConvertTime(utc, timeZone);
+    }
 
     /// <summary>
     /// Return true if <paramref name="value"/> was recorded within the last
@@ -26,7 +30,9 @@ public static class DateTimeExercises
     /// i.e. (now - value) <= ttl
     /// </summary>
     public static bool IsWithinTtl(DateTimeOffset value, DateTimeOffset now, TimeSpan ttl)
-        => throw new NotImplementedException();
+    {
+        return (now - value) <= ttl;
+    }
 }
 
 /// <summary>
@@ -35,23 +41,31 @@ public static class DateTimeExercises
 /// </summary>
 public class TtlCacheEntry<T>
 {
-    public T       Value     { get; }
+    public T Value { get; }
     public DateTimeOffset ExpiresAt { get; }
 
     public TtlCacheEntry(T value, TimeSpan ttl, DateTimeOffset now)
     {
-        Value     = value;
+        Value = value;
         ExpiresAt = now + ttl;
     }
 
     /// <summary>Return true if now >= ExpiresAt.</summary>
-    public bool IsExpired(DateTimeOffset now)
-        => throw new NotImplementedException();
-
+    public bool IsExpired(DateTimeOffset now) => now >= ExpiresAt;
+    
     /// <summary>
     /// If not expired, set <paramref name="value"/> and return true.
     /// Otherwise set default and return false.
     /// </summary>
     public bool TryGetValue(DateTimeOffset now, out T value)
-        => throw new NotImplementedException();
+    {
+        if (!IsExpired(now))
+        {
+            value = Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }

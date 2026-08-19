@@ -10,7 +10,13 @@ public static class LinqDeferredExercises
     /// Hint: Chunk (NET 6+).
     /// </summary>
     public static IEnumerable<IEnumerable<T>> Batch<T>(IEnumerable<T> source, int size)
-        => throw new NotImplementedException();
+    {
+        return source.Chunk(size);
+
+        //T[] x = [.. source];
+        //IEnumerable<T[]> y = x.Chunk(size);
+        //return y;
+    }
 
     /// <summary>
     /// Build a lazy pipeline: filter evens, multiply by 3, take first <paramref name="n"/>.
@@ -18,7 +24,12 @@ public static class LinqDeferredExercises
     /// Hint: Where + Select + Take (all deferred).
     /// </summary>
     public static IEnumerable<int> LazyEvenTripled(IEnumerable<int> source, int n)
-        => throw new NotImplementedException();
+    {
+        return source
+            .Where(x => x % 2 == 0)
+            .Select(y => y * 3)
+            .Take(n);
+    }
 
     /// <summary>
     /// Demonstrate that LINQ is deferred: given a list, build a query with Where,
@@ -28,5 +39,10 @@ public static class LinqDeferredExercises
     /// Hint: build query before Add, materialise after Add.
     /// </summary>
     public static bool DeferredExecutionDemo()
-        => throw new NotImplementedException();
+    {
+        var list = new List<int>([0, 1, 2, 3, 4, 5]);
+        var query = list.Where(x => x == 6);
+        list.Add(6);
+        return query.FirstOrDefault() == 6;
+    }
 }

@@ -11,22 +11,30 @@ namespace CSharpExercises;
 /// </summary>
 public class ExerciseTemperature
 {
-    // TODO: private backing field
+    private readonly double _celsius;
+
+    public double Celsius => _celsius;
+    public double Kelvin => CelciusToKelvin(_celsius);
+    public double Fahrenheit => CelciusToFahrenheiht(_celsius);
+
+    private ExerciseTemperature(double celsius)
+    {
+        _celsius = celsius;
+    }
 
     /// <summary>Create from a Celsius value.</summary>
-    public static ExerciseTemperature FromCelsius(double celsius)
-        => throw new NotImplementedException();
+    public static ExerciseTemperature FromCelsius(double celsius) => new(celsius);
 
     /// <summary>Create from a Fahrenheit value.</summary>
-    public static ExerciseTemperature FromFahrenheit(double fahrenheit)
-        => throw new NotImplementedException();
-
+    public static ExerciseTemperature FromFahrenheit(double f) => new(FahrenheitToCelcius(f));
+        
     /// <summary>Create from a Kelvin value.</summary>
-    public static ExerciseTemperature FromKelvin(double kelvin)
-        => throw new NotImplementedException();
+    public static ExerciseTemperature FromKelvin(double k) => new(KelvinToCelcius(k));
 
-    public double Celsius    => throw new NotImplementedException();
-    public double Fahrenheit => throw new NotImplementedException();
-    public double Kelvin     => throw new NotImplementedException();
+    public static double CelciusToKelvin(double value) => value + 273.15;
+    public static double CelciusToFahrenheiht(double value) => value * 9.0 / 5.0 + 32;
+
+    public static double KelvinToCelcius(double value) => value - 273.15;
+    public static double FahrenheitToCelcius(double value) => (value - 32) * 5.0 / 9.0;
 }
 

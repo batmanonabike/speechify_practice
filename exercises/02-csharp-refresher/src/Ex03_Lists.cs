@@ -11,7 +11,7 @@ public static class ListExercises
     /// Hint: List<T>.FindAll or LINQ Where + ToList.
     /// </summary>
     public static List<int> FilterAbove(List<int> source, int threshold)
-        => throw new NotImplementedException();
+        => source.FindAll(x => x > threshold);
 
     /// <summary>
     /// Return the <paramref name="source"/> list sorted descending (largest first).
@@ -19,7 +19,11 @@ public static class ListExercises
     /// Hint: new List + Sort with a comparer, or LINQ OrderByDescending.
     /// </summary>
     public static List<int> SortDescending(List<int> source)
-        => throw new NotImplementedException();
+    {
+        var result = new List<int>(source);
+        result.Sort((a, b) => b.CompareTo(a));
+        return result;
+    }
 
     /// <summary>
     /// Remove all duplicate values and return the unique elements
@@ -27,14 +31,30 @@ public static class ListExercises
     /// Hint: iterate + HashSet to track seen values.
     /// </summary>
     public static List<int> RemoveDuplicates(List<int> source)
-        => throw new NotImplementedException();
+    {
+        var result = new List<int>();
+        var hashSet = new HashSet<int>();
+
+        foreach (var item in source)
+        {
+            if (hashSet.Add(item))
+                result.Add(item);
+        }
+
+        return result;
+    }
 
     /// <summary>
     /// Return every element at an even index (0, 2, 4, …).
     /// Hint: loop with index, or LINQ Where with index overload.
     /// </summary>
     public static List<T> ElementsAtEvenIndices<T>(List<T> source)
-        => throw new NotImplementedException();
+    {
+        var result = new List<T>();
+        for (int index = 0; index < source.Count; index += 2)
+            result.Add(source[index]);
+        return result;
+    }
 
     /// <summary>
     /// Rotate the list left by <paramref name="positions"/>.
@@ -42,5 +62,17 @@ public static class ListExercises
     /// Hint: GetRange + AddRange, or modulo arithmetic.
     /// </summary>
     public static List<T> RotateLeft<T>(List<T> source, int positions)
-        => throw new NotImplementedException();
+    {
+        var result = source.GetRange(positions, source.Count - positions);
+        result.AddRange(source.GetRange(0, positions));
+        return result;
+
+        //var lhs = source.GetRange(0, positions);
+        //var rhs = source.GetRange(positions, source.Count - positions);
+
+        //var result = new List<T>();
+        //result.AddRange(rhs);
+        //result.AddRange(lhs);
+        //return result;
+    }
 }

@@ -11,7 +11,10 @@ public static class AsyncExercises
     /// Must be truly async — no .Result or .Wait().
     /// </summary>
     public static async Task<string> FetchUserNameAsync(int id)
-        => throw new NotImplementedException();
+    {
+        await Task.Delay(10);
+        return id > 0 ? $"User_{id}" : throw new ArgumentException(nameof(id));
+    }
 
     /// <summary>
     /// Call FetchUserNameAsync for EACH id in parallel using Task.WhenAll,
@@ -19,7 +22,11 @@ public static class AsyncExercises
     /// Hint: Select + Task.WhenAll.
     /// </summary>
     public static async Task<string[]> FetchAllAsync(IEnumerable<int> ids)
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(ids);
+        var tasks = ids.Select(FetchUserNameAsync);
+        return await Task.WhenAll(tasks);
+    }
 
     /// <summary>
     /// Run <paramref name="operation"/> but cancel it after <paramref name="timeoutMs"/> ms.
@@ -29,7 +36,14 @@ public static class AsyncExercises
     public static async Task<T> WithTimeoutAsync<T>(
         Func<CancellationToken, Task<T>> operation,
         int timeoutMs)
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(operation);
+        ArgumentOutOfRangeException.ThrowIfNegative(timeoutMs);
+
+        using var cts = new CancellationTokenSource();
+        cts.CancelAfter(timeoutMs);
+        return await operation(cts.Token);
+    }
 
     /// <summary>
     /// Given an IAsyncEnumerable<int> source, return the sum of all values
@@ -39,5 +53,16 @@ public static class AsyncExercises
     public static async Task<int> SumWhereAsync(
         IAsyncEnumerable<int> source,
         Func<int, bool> predicate)
-        => throw new NotImplementedException();
+    {
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(predicate);
+
+        int result = 0;
+        await foreach (var item in source)
+        {
+            if (predicate(item))
+                result += item;
+        }
+        return result;
+    }
 }
