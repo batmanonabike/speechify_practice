@@ -1,0 +1,5 @@
+# The repo root forces *.sln / *.slnx to LF, but Visual Studio rewrites solution
+# files as CRLF the moment you open them, leaving the tree permanently dirty.
+# Under a 50-minute clock where you must push, that noise is not worth it.
+*.slnx text eol=crlf
+*.sln  text eol=crlf

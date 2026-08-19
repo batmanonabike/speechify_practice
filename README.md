@@ -6,13 +6,28 @@ This repository contains Speechify-style refactoring exercises and a C# refreshe
 
 ## Exercises
 
-### 01 — Speechify Refactoring & Caching
+### 01 — Speechify Refactoring & Caching (warm-up)
 `exercises/01-speechify-refactoring-caching/`
 
-A realistic refactoring exercise: take legacy code and introduce clean architecture,
-dependency injection, and a TTL-based caching layer.
+A short guided drill on TTL caching and DI wiring. The interfaces and the decorator
+shape are pre-written, so this is a warm-up (15–25 minutes) rather than a full rehearsal.
+58 tests.
 
 **Open in Visual Studio:** `exercises/01-speechify-refactoring-caching/SpeechifyPractice.sln`
+
+---
+
+### 03 — Billing Refactor & Caching (advanced)
+`exercises/03-speechify-refactoring-caching_02/`
+
+The full-fidelity, 50-minute kata. You get a 200-line god class with a static
+never-expiring cache, `DateTime.Now` in the business logic, two different rounding modes
+and a diverged duplicate of the fee rules — plus a brief. Every seam is your call.
+
+168 tests: 69 characterization tests are green from the start and pin the legacy
+behaviour; the other 99 are the work. Ships with `TIMEBOX.md` and `RUBRIC.md`.
+
+**Open in Visual Studio:** `exercises/03-speechify-refactoring-caching_02/SpeechifyKata.slnx`
 
 ---
 

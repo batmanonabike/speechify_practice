@@ -167,6 +167,8 @@ public static class DateTimeExamples
         bool isExpired  = DateTime.UtcNow >= expiresAt;
         Console.WriteLine($"Cache valid: {isValid}, Expired: {isExpired}");
 
+        UtcDateTimeTtlExample();
+
         // --- Pattern 2: Age check (how long since something was set?) ---
         var storedAt    = DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(6));
         var age2        = DateTime.UtcNow - storedAt;
@@ -237,6 +239,18 @@ public static class DateTimeExamples
         Console.WriteLine($"Elapsed (Stopwatch): {sw.ElapsedMilliseconds}ms");
         // DateTime subtraction is affected by DST changes and clock adjustments.
         // Use Stopwatch for measuring code performance.
+    }
+
+    private static void UtcDateTimeTtlExample()
+    {
+        var ttl = TimeSpan.FromMinutes(5);
+        DateTime cachedAtUtc = new DateTime(2026, 8, 18, 9, 0, 0, DateTimeKind.Utc);
+        DateTime checkedAtUtc = new DateTime(2026, 8, 18, 9, 5, 0, DateTimeKind.Utc);
+
+        DateTime expiresAtUtc = cachedAtUtc.Add(ttl);
+        bool isExpired = checkedAtUtc >= expiresAtUtc;
+
+        Console.WriteLine($"Expires at {expiresAtUtc:O}: {isExpired}"); // true
     }
 }
 

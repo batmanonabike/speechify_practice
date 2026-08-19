@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="./src/Speechify.Billing.Abstractions/Speechify.Billing.Abstractions.csproj" />
+    <Project Path="./src/Speechify.Billing.Legacy/Speechify.Billing.Legacy.csproj" />
+    <Project Path="./src/Speechify.Billing/Speechify.Billing.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="./tests/Speechify.Billing.Tests/Speechify.Billing.Tests.csproj" />
+  </Folder>
+</Solution>
